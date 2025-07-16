@@ -6,7 +6,7 @@ public class SendPlayerChoice : MonoBehaviour
 {
     IEnumerator Start()
     {
-        // Дождаться подключения
+        // Ожидание подключения
         while (!NetworkClient.isConnected)
         {
             yield return null;

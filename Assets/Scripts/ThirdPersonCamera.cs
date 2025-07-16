@@ -3,12 +3,12 @@ using UnityEngine.InputSystem;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public Transform pivot; // CameraPivot (родитель камеры)
-    public Transform target; // игрок, за которым следует pivot
-    public Vector2 sensitivity = new Vector2(3f, 1.5f);
-    public Vector2 pitchClamp = new Vector2(-30, 60);
-    public float distance = 5f;
-    public float followSpeed = 5f; // скорость сглаживания
+    public Transform pivot; // CameraPivot
+    public Transform target; // Игрок
+    public Vector2 sensitivity = new Vector2(3f, 1.5f); // Чувствительность мыши
+    public Vector2 pitchClamp = new Vector2(-30, 60); // Ограничение угла вращения по вертикали
+    public float distance = 5f; // Расстояние от камеры до игрока
+    public float followSpeed = 5f; // Скорость сглаживания перемещения камеры
 
     private float yaw;
     private float pitch;
@@ -21,13 +21,13 @@ public class ThirdPersonCamera : MonoBehaviour
         Vector3 targetPos = new Vector3(target.position.x, pivot.position.y, target.position.z);
         pivot.position = Vector3.Lerp(pivot.position, targetPos, followSpeed * Time.deltaTime);
 
-        // Чтение мыши
+        // Движение мыши
         Vector2 look = Mouse.current.delta.ReadValue() * sensitivity;
         yaw += look.x;
         pitch -= look.y;
         pitch = Mathf.Clamp(pitch, pitchClamp.x, pitchClamp.y);
 
-        // Обновляем вращение pivot
+        // Вращение pivot
         pivot.rotation = Quaternion.Euler(pitch, yaw, 0);
 
         // Камера позади pivot
