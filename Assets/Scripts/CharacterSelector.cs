@@ -6,12 +6,12 @@ public class CharacterSelector : MonoBehaviour
     public void SelectFox()
     {
         PlayerPrefs.SetString("SelectedCharacter", "Fox");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void SelectBird()
     {
         PlayerPrefs.SetString("SelectedCharacter", "Bird");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 }
